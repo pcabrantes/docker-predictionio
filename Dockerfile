@@ -1,7 +1,7 @@
 FROM ubuntu
 MAINTAINER Fabian M. Borschel <fabian.borschel@commercetools.de>
 
-ENV PIO_VERSION 0.9.6
+ENV PIO_VERSION 0.12.1
 ENV SPARK_VERSION 1.5.1
 ENV ELASTICSEARCH_VERSION 1.4.4
 ENV HBASE_VERSION 1.0.0
@@ -15,9 +15,9 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN curl -O https://d8k1yxp8elc6b.cloudfront.net/PredictionIO-${PIO_VERSION}.tar.gz \
-    && tar -xvzf PredictionIO-${PIO_VERSION}.tar.gz -C / && mkdir -p ${PIO_HOME}/vendors \
-    && rm PredictionIO-${PIO_VERSION}.tar.gz
+RUN curl -O https://www.apache.org/dyn/closer.cgi/predictionio/0.12.1/apache-predictionio-0.12.1-bin.tar.gz \
+    && tar -xvzf apache-predictionio-0.12.1-bin.tar.gz -C / && mkdir -p ${PIO_HOME}/vendors \
+    && apache-predictionio-0.12.1-bin.tar.gz
 COPY files/pio-env.sh ${PIO_HOME}/conf/pio-env.sh
 
 RUN curl -O http://d3kbcqa49mib13.cloudfront.net/spark-${SPARK_VERSION}-bin-hadoop2.6.tgz \
